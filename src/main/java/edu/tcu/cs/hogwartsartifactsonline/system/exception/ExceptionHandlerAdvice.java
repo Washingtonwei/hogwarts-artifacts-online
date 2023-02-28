@@ -1,6 +1,5 @@
 package edu.tcu.cs.hogwartsartifactsonline.system.exception;
 
-import edu.tcu.cs.hogwartsartifactsonline.artifact.ArtifactNotFoundException;
 import edu.tcu.cs.hogwartsartifactsonline.system.Result;
 import edu.tcu.cs.hogwartsartifactsonline.system.StatusCode;
 import org.springframework.http.HttpStatus;
@@ -18,9 +17,9 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
 
-    @ExceptionHandler(ArtifactNotFoundException.class)
+    @ExceptionHandler(ObjectNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    Result handleArtifactNotFoundException(ArtifactNotFoundException ex){
+    Result handleObjectNotFoundException(ObjectNotFoundException ex){
         return new Result(false, StatusCode.NOT_FOUND, ex.getMessage());
     }
 
