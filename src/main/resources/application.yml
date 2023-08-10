@@ -6,6 +6,11 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     show-sql: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 api:
   endpoint:
     base-url: /api/v1
