@@ -71,8 +71,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, this.baseUrl + "/users").hasAuthority("ROLE_admin") // Protect the endpoint.
                         .requestMatchers(HttpMethod.PUT, this.baseUrl + "/users/**").hasAuthority("ROLE_admin") // Protect the endpoint.
                         .requestMatchers(HttpMethod.DELETE, this.baseUrl + "/users/**").hasAuthority("ROLE_admin") // Protect the endpoint.
-                        .requestMatchers(EndpointRequest.to("health", "info")).permitAll()
-                        .requestMatchers(EndpointRequest.toAnyEndpoint().excluding("health", "info")).hasAuthority("ROLE_admin")
+                        .requestMatchers(EndpointRequest.to("health", "info", "prometheus")).permitAll()
+                        .requestMatchers(EndpointRequest.toAnyEndpoint().excluding("health", "info", "prometheus")).hasAuthority("ROLE_admin")
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // Explicitly fallback to antMatcher inside requestMatchers.
                         // Disallow everything else.
                         .anyRequest().authenticated() // Always a good idea to put this as last.

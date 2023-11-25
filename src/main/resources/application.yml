@@ -15,7 +15,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,env,beans,configprops,heapdump,httpexchanges,loggers,mappings,custom-beans
+        include: health,info,metrics,env,beans,configprops,heapdump,httpexchanges,loggers,mappings,custom-beans,prometheus
   endpoint:
     health:
       show-details: always
@@ -37,6 +37,9 @@ management:
       enabled: true
     os:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1 # Only for demo purpose, change it back to 0.1 in production.
 info:
   app:
     name: hogwarts-artifacts-online
