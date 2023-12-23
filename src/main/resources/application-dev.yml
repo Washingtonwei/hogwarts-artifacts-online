@@ -5,3 +5,7 @@ spring:
     password:
   jpa:
     show-sql: true
+ai:
+  openai:
+    endpoint: ${AI_OPENAI_ENDPOINT:https://api.openai.com/v1/chat/completions} # environment variable with a default value
+    api-key: ${AI_OPENAI_API_KEY:YOUR_API_KEY} # environment variable with a default value

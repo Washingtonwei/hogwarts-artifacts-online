@@ -24,7 +24,7 @@ Through my YouTube course, you will gain practical experience in:
 - User authentication and authorization with **Spring Security** and **JWT (JSON Web Tokens)**.
 - Deploying a Spring Boot application to a cloud platform with **Spring Cloud Azure**.
 - Monitoring a running Spring Boot application in the production with **Spring Boot Actuator**.
-- Making requests to ChatGPT with **RestClient**.
+- Making requests to OpenAI API with **RestClient**.
 - And more.
 
 Additionally, my course emphasizes good software engineering practices, such as:
@@ -44,7 +44,7 @@ Additionally, my course emphasizes good software engineering practices, such as:
 
 ### API Documentation
 
-🔗 [Hogwarts Artifacts Online API Documentation](https://app.swaggerhub.com/apis/Washingtonwei/hogwarts-openapi/2.0.0)
+🔗 [Hogwarts Artifacts Online API Documentation](https://app.swaggerhub.com/apis/Washingtonwei/hogwarts-openapi/2.1.0)
 
 ## Run Hogwarts Artifacts Online Locally
 
@@ -166,3 +166,4 @@ Check them out now below to dive deeper into the world of Spring Boot developmen
 49. [Connecting Spring Boot to a MySQL Database with Azure Key Vault](https://youtu.be/Giqn99rZGaM)
 50. [Spring Boot Actuator](https://youtu.be/u51q4Oq0a5k)
 51. [Observing a Spring Boot Application with Actuator, Prometheus, Grafana, and Zipkin](https://youtu.be/aqwGRRgiMPI)
+52. [Upgrading a Spring Boot Application](https://youtu.be/EkxgbjFqOrY)
