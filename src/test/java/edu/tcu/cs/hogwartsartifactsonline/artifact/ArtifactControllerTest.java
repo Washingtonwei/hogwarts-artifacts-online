@@ -98,7 +98,7 @@ class ArtifactControllerTest {
 
         Artifact a7 = new Artifact();
         a7.setId("1250808601744904197");
-        a7.setName("UKWA time");
+        a7.setName("UKWA wayback");
         a7.setDescription("The UKWA wayback machine allows the holder to bring back websites loved ones, in a semi-physical form, and browse them.");
         a7.setImageUrl("ImageUrl");
         this.artifacts.add(a7);
