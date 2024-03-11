@@ -1,7 +1,7 @@
 name: Build and deploy a container to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: hogwarts-artifacts-online
+  AZURE_WEBAPP_NAME: new-ukwa-artifacts-online
 
 on:
   push:
