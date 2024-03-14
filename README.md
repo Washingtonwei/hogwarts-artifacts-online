@@ -26,6 +26,7 @@ Through my YouTube course, you will gain practical experience in:
 - Monitoring a running Spring Boot application in the production with **Spring Boot Actuator**.
 - Making requests to OpenAI API with **RestClient**.
 - Paging and sorting.
+- Writing dynamic queries with Spring Data JPA Specifications.
 - And more.
 
 Additionally, my course emphasizes good software engineering practices, such as:
@@ -41,11 +42,11 @@ Additionally, my course emphasizes good software engineering practices, such as:
 
 ### Project User Stories
 
-🔗 [The mind map of the Hogwarts Artifacts Online user stories](https://xmind.app/m/ARmDM5)
+🔗 [The mind map of the Hogwarts Artifacts Online user stories](https://xmind.app/m/A2Spvq)
 
 ### API Documentation
 
-🔗 [Hogwarts Artifacts Online API Documentation](https://app.swaggerhub.com/apis/Washingtonwei/hogwarts-openapi/3.0.0)
+🔗 [Hogwarts Artifacts Online API Documentation](https://app.swaggerhub.com/apis/Washingtonwei/hogwarts-openapi)
 
 ## Run Hogwarts Artifacts Online Locally
 
