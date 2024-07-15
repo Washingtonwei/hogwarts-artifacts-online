@@ -1,18 +1,29 @@
-# Hogwarts Artifacts Online - Spring Boot Application 
+# Hogwarts Artifacts Online - Spring Boot Application
 
 [![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Washingtonwei/hogwarts-artifacts-online/maven-build.yml?logo=apachemaven&label=Maven%20Build)](https://github.com/Washingtonwei/hogwarts-artifacts-online/actions/workflows/maven-build.yml) [![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/Washingtonwei/hogwarts-artifacts-online/azure-webapps-deploy.yml?logo=microsoftazure&label=Azure%20Deployment)](https://github.com/Washingtonwei/hogwarts-artifacts-online/actions/workflows/azure-webapps-deploy.yml) ![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FWashingtonwei%2Fhogwarts-artifacts-online%2Fmain%2Fpom.xml&query=%2F*%5Blocal-name()%3D'project'%5D%2F*%5Blocal-name()%3D'properties'%5D%2F*%5Blocal-name()%3D'java.version'%5D&label=Java) ![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FWashingtonwei%2Fhogwarts-artifacts-online%2Fmain%2Fpom.xml&query=%2F*%5Blocal-name()%3D'project'%5D%2F*%5Blocal-name()%3D'parent'%5D%2F*%5Blocal-name()%3D'version'%5D&label=Spring%20Boot) ![Dynamic XML Badge](https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Fraw.githubusercontent.com%2FWashingtonwei%2Fhogwarts-artifacts-online%2Fmain%2Fpom.xml&query=%2F*%5Blocal-name()%3D'project'%5D%2F*%5Blocal-name()%3D'properties'%5D%2F*%5Blocal-name()%3D'spring-cloud-azure.version'%5D&label=Spring%20Cloud%20Azure)
 
 ## What is 🧙‍♂️ Hogwarts Artifacts Online 🧙‍♀️?
 
-Welcome to *Hogwarts Artifacts Online*, a sample back-end application designed to demonstrate typical use cases and best practices in Spring Boot development. I wrote this sample application **line-by-line from scratch** in my YouTube course titled ["Learn Spring Boot 3 with Bingyang" ![Static Badge](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=red)](https://youtube.com/playlist?list=PLqq9AhcMm2oPdXXFT3fzjaKLsVymvMXaY&si=QTkudVtqVpO1jPBA).
+Welcome to *Hogwarts Artifacts Online*, a sample back-end application designed to demonstrate typical use cases and best
+practices in Spring Boot development. I wrote this sample application **line-by-line from scratch** in my YouTube course
+titled ["Learn Spring Boot 3 with Bingyang" ![Static Badge](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=red)](https://youtube.com/playlist?list=PLqq9AhcMm2oPdXXFT3fzjaKLsVymvMXaY&si=QTkudVtqVpO1jPBA).
 
-Throughout the course, *Hogwarts Artifacts Online* serves as a running example and is developed progressively. That is, each episode introduces new Spring Boot features that add functionality or improvements to this project. This approach helps you see how different concepts fit together in a practical context.
+Throughout the course, *Hogwarts Artifacts Online* serves as a running example and is developed progressively. That is,
+each episode introduces new Spring Boot features that add functionality or improvements to this project. This approach
+helps you see how different concepts fit together in a practical context.
 
-In addition to exploring the features of Spring Boot, the course delves into essential software engineering practices. We will start by framing user stories, then move on to crafting REST APIs and applying object-oriented design principles. Embracing test-driven development, we will meticulously build and refine each feature. The culmination of this journey is setting up a comprehensive CI/CD pipeline, ensuring smooth deployment of the application.
+In addition to exploring the features of Spring Boot, the course delves into essential software engineering practices.
+We will start by framing user stories, then move on to crafting REST APIs and applying object-oriented design
+principles. Embracing test-driven development, we will meticulously build and refine each feature. The culmination of
+this journey is setting up a comprehensive CI/CD pipeline, ensuring smooth deployment of the application.
 
 **Suitable for Muggles and Wizards Alike**
 
-Whether you're new to Spring Boot or an experienced developer looking to add some magic to your skillset, *Hogwarts Artifacts Online* is the perfect place to start. As you follow along with the videos, I encourage you to actively code alongside me. Engaging in hands-on practice is an excellent method for mastering programming skills. So grab your wand 🪄 (or keyboard ⌨️) and prepare to embark on a journey into ["Learn Spring Boot 3 with Bingyang" ![Static Badge](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=red)](https://youtube.com/playlist?list=PLqq9AhcMm2oPdXXFT3fzjaKLsVymvMXaY&si=QTkudVtqVpO1jPBA)!
+Whether you're new to Spring Boot or an experienced developer looking to add some magic to your skillset, *Hogwarts
+Artifacts Online* is the perfect place to start. As you follow along with the videos, I encourage you to actively code
+alongside me. Engaging in hands-on practice is an excellent method for mastering programming skills. So grab your wand
+🪄 (or keyboard ⌨️) and prepare to embark on a journey
+into ["Learn Spring Boot 3 with Bingyang" ![Static Badge](https://img.shields.io/badge/YouTube-white?logo=youtube&logoColor=red)](https://youtube.com/playlist?list=PLqq9AhcMm2oPdXXFT3fzjaKLsVymvMXaY&si=QTkudVtqVpO1jPBA)!
 
 ## What Will You Learn?
 
@@ -66,7 +77,8 @@ Additionally, my course emphasizes good software engineering practices, such as:
 
 3. **Run the application:**
 
-Since *Hogwarts Artifacts Online* is a Spring Boot application built using Maven, you can  run it from Maven directly using the Spring Boot Maven plugin:
+Since *Hogwarts Artifacts Online* is a Spring Boot application built using Maven, you can run it from Maven directly
+using the Spring Boot Maven plugin:
 
    ```bash
    ./mvnw spring-boot:run
@@ -92,7 +104,9 @@ In its default configuration, *Hogwarts Artifacts Online* uses an in-memory data
 gets populated at startup with data. The H2 console is available at <http://localhost/h2-console>,
 and it is possible to inspect the content of the database using the `jdbc:h2:mem:hogwarts` URL.
 
-I have defined a class [`edu.tcu.cs.hogwartsartifactsonline.system.DBDataInitializer`](https://github.com/Washingtonwei/hogwarts-artifacts-online/blob/main/src/main/java/edu/tcu/cs/hogwartsartifactsonline/system/DBDataInitializer.java) to populate the H2 database at startup.
+I have defined a
+class [`edu.tcu.cs.hogwartsartifactsonline.system.DBDataInitializer`](https://github.com/Washingtonwei/hogwarts-artifacts-online/blob/main/src/main/java/edu/tcu/cs/hogwartsartifactsonline/system/DBDataInitializer.java)
+to populate the H2 database at startup.
 
 ## Accessing the API Endpoints
 
@@ -100,11 +114,13 @@ I have defined a class [`edu.tcu.cs.hogwartsartifactsonline.system.DBDataInitial
 
 ## Contributing
 
-The [issue tracker](https://github.com/Washingtonwei/hogwarts-artifacts-online/issues) is the preferred channel for bug reports, feature requests, and submitting pull requests.
+The [issue tracker](https://github.com/Washingtonwei/hogwarts-artifacts-online/issues) is the preferred channel for bug
+reports, feature requests, and submitting pull requests.
 
 ## License
 
-The *Hogwarts Artifacts Online* application is released under version 2.0 of the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
+The *Hogwarts Artifacts Online* application is released under version 2.0 of
+the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
 
 ## Acknowledgements
 
@@ -113,7 +129,10 @@ The *Hogwarts Artifacts Online* application is released under version 2.0 of the
 
 ## YouTube Videos
 
-If you're looking to enhance your understanding of this Spring Boot tutorial, I highly recommend watching the accompanying YouTube video playlist. It provides a comprehensive walk-through of the concepts and code discussed here, complete with visual demonstrations and step-by-step explanations. Whether you're a visual learner or just prefer a more interactive approach, those videos are a valuable resource to solidify your grasp of Spring Boot.
+If you're looking to enhance your understanding of this Spring Boot tutorial, I highly recommend watching the
+accompanying YouTube video playlist. It provides a comprehensive walk-through of the concepts and code discussed here,
+complete with visual demonstrations and step-by-step explanations. Whether you're a visual learner or just prefer a more
+interactive approach, those videos are a valuable resource to solidify your grasp of Spring Boot.
 
 Check them out now below to dive deeper into the world of Spring Boot development!
 
@@ -170,3 +189,5 @@ Check them out now below to dive deeper into the world of Spring Boot developmen
 51. [Observing a Spring Boot Application with Actuator, Prometheus, Grafana, and Zipkin](https://youtu.be/aqwGRRgiMPI)
 52. [Upgrading a Spring Boot Application](https://youtu.be/EkxgbjFqOrY)
 53. [Connecting Spring Boot to OpenAI with RestClient](https://youtu.be/WMSYLAby2YU)
+54. [Paging and Sorting](https://youtu.be/pbsxk-sX8Pc)
+55. [Spring Data JPA Specifications](https://youtu.be/AWBSWlM0JmQ)
