@@ -15,7 +15,7 @@
     <description>hogwarts-artifacts-online</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud-azure.version>5.7.0</spring-cloud-azure.version> <!-- Upgrade to 5.7.0 -->
+        <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version> <!-- Upgrade to 5.13.0 -->
     </properties>
     <dependencies>
         <dependency>
@@ -93,11 +93,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-properties-migrator</artifactId>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-properties-migrator</artifactId>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                    <artifactId>jackson-dataformat-xml</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <!--    The Spring Cloud Azure Bill of Materials (BOM)-->

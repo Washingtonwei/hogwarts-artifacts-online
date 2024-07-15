@@ -5,6 +5,15 @@ spring:
     password:
   jpa:
     show-sql: true
+  cloud:
+    azure:
+      storage:
+        account-name: ${AZURE_STORAGE_ACCOUNT_NAME:YOUR_ACCOUNT_NAME} # environment variable with a default value
+        account-key: ${AZURE_STORAGE_ACCOUNT_KEY:YOUR_ACCOUNT_KEY} # environment variable with a default value
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 20MB
 ai:
   openai:
     endpoint: ${AI_OPENAI_ENDPOINT:https://api.openai.com/v1/chat/completions} # environment variable with a default value

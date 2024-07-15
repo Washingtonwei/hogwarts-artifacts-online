@@ -120,6 +120,12 @@ public class ExceptionHandlerAdvice {
                 ex.getStatusCode());
     }
 
+    @ExceptionHandler(CustomBlobStorageException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    Result handleCustomBlobStorageException(CustomBlobStorageException ex) {
+        return new Result(false, StatusCode.INTERNAL_SERVER_ERROR, "Failed to upload image to Azure Blob Storage", ex.getMessage());
+    }
+
     /**
      * Fallback handles any unhandled exceptions.
      *
