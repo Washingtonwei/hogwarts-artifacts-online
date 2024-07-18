@@ -94,7 +94,6 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler({HttpClientErrorException.class, HttpServerErrorException.class})
     ResponseEntity<Result> handleRestClientException(HttpStatusCodeException ex) throws JsonProcessingException {
-
         String exceptionMessage = ex.getMessage();
 
         // Replace <EOL> with actual newlines.
