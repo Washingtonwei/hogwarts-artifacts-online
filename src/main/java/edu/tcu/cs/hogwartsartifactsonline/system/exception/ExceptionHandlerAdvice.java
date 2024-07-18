@@ -94,7 +94,6 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler({HttpClientErrorException.class, HttpServerErrorException.class})
     ResponseEntity<Result> handleRestClientException(HttpStatusCodeException ex) throws JsonProcessingException {
-
         String exceptionMessage = ex.getMessage();
 
         // Replace <EOL> with actual newlines.
@@ -123,7 +122,7 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(CustomBlobStorageException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     Result handleCustomBlobStorageException(CustomBlobStorageException ex) {
-        return new Result(false, StatusCode.INTERNAL_SERVER_ERROR, "Failed to upload image to Azure Blob Storage", ex.getMessage());
+        return new Result(false, StatusCode.INTERNAL_SERVER_ERROR, ex.getMessage(), ex.getCause().getMessage());
     }
 
     /**

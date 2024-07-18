@@ -25,7 +25,7 @@ public class AzureImageStorageClient implements ImageStorageClient {
     public String uploadImage(String containerName, String originalImageName, InputStream data, long length) throws IOException {
         try {
             // Get the BlobContainerClient object to interact with the container
-            BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient(containerName);
+            BlobContainerClient blobContainerClient = this.blobServiceClient.getBlobContainerClient(containerName);
 
             // Rename the image file to a unique name
             String newImageName = UUID.randomUUID().toString() + originalImageName.substring(originalImageName.lastIndexOf("."));
