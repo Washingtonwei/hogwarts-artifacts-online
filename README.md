@@ -191,3 +191,4 @@ Check them out now below to dive deeper into the world of Spring Boot developmen
 53. [Connecting Spring Boot to OpenAI with RestClient](https://youtu.be/WMSYLAby2YU)
 54. [Paging and Sorting](https://youtu.be/pbsxk-sX8Pc)
 55. [Spring Data JPA Specifications](https://youtu.be/AWBSWlM0JmQ)
+56. [Uploading Files to Azure Blob Storage from Spring Boot](https://youtu.be/v_4z8wzel8Y)
