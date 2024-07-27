@@ -53,7 +53,7 @@ Additionally, my course emphasizes good software engineering practices, such as:
 
 ### Project User Stories
 
-🔗 [The mind map of the Hogwarts Artifacts Online user stories](https://xmind.app/m/A2Spvq)
+🔗 [The mind map of the Hogwarts Artifacts Online user stories](https://xmind.app/m/999Pse)
 
 ### API Documentation
 
@@ -74,8 +74,15 @@ Additionally, my course emphasizes good software engineering practices, such as:
    ```bash
    cd hogwarts-artifacts-online
    ```
+3. **Launch Redis**
 
-3. **Run the application:**
+This Spring Boot application uses Redis for caching. You can run a Redis container using Docker:
+
+   ```bash
+   docker run -d -p 6379:6379 redis
+   ```
+
+4**Run the application:**
 
 Since *Hogwarts Artifacts Online* is a Spring Boot application built using Maven, you can run it from Maven directly
 using the Spring Boot Maven plugin:
@@ -192,3 +199,4 @@ Check them out now below to dive deeper into the world of Spring Boot developmen
 54. [Paging and Sorting](https://youtu.be/pbsxk-sX8Pc)
 55. [Spring Data JPA Specifications](https://youtu.be/AWBSWlM0JmQ)
 56. [Uploading Files to Azure Blob Storage from Spring Boot](https://youtu.be/v_4z8wzel8Y)
+57. [Restricting User Access to Their Own Data](https://youtu.be/j1EvF_iUNMQ)

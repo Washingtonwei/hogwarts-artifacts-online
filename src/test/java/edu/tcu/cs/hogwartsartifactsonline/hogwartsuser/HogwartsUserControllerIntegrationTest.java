@@ -1,6 +1,7 @@
 package edu.tcu.cs.hogwartsartifactsonline.hogwartsuser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.redis.testcontainers.RedisContainer;
 import edu.tcu.cs.hogwartsartifactsonline.system.StatusCode;
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
@@ -19,6 +21,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -26,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
+@Testcontainers
 @AutoConfigureMockMvc
 @DisplayName("Integration tests for User API endpoints")
 @Tag("integration")
@@ -42,6 +51,10 @@ class HogwartsUserControllerIntegrationTest {
 
     @Value("${api.endpoint.base-url}")
     String baseUrl;
+
+    @Container
+    @ServiceConnection
+    static RedisContainer redisContainer = new RedisContainer(DockerImageName.parse("redis:6.2.6"));
 
 
     @BeforeEach
@@ -270,7 +283,7 @@ class HogwartsUserControllerIntegrationTest {
         String ericToken = "Bearer " + json.getJSONObject("data").getString("token");
 
         HogwartsUser hogwartsUser = new HogwartsUser();
-        hogwartsUser.setUsername("tom123"); // Username is changed. It was eric.
+        hogwartsUser.setUsername("tom123"); // Username is changed. It was tom.
         hogwartsUser.setEnabled(false);
         hogwartsUser.setRoles("user");
 
@@ -329,6 +342,100 @@ class HogwartsUserControllerIntegrationTest {
                 .andExpect(jsonPath("$.data", Matchers.hasSize(3)))
                 .andExpect(jsonPath("$.data[0].id").value(1))
                 .andExpect(jsonPath("$.data[0].username").value("john"));
+    }
+
+    @Test
+    @DisplayName("Check changeUserPassword with valid input (PATCH)")
+    @DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
+    void testChangeUserPassword() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/users/login").with(httpBasic("eric", "654321"))); // httpBasic() is from spring-security-test.
+        MvcResult mvcResult = resultActions.andDo(print()).andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        JSONObject json = new JSONObject(contentAsString);
+        String ericToken = "Bearer " + json.getJSONObject("data").getString("token");
+
+        // Given
+        Map<String, String> passwordMap = new HashMap<>();
+        passwordMap.put("oldPassword", "654321");
+        passwordMap.put("newPassword", "Abc12345");
+        passwordMap.put("confirmNewPassword", "Abc12345");
+
+        String passwordMapJson = this.objectMapper.writeValueAsString(passwordMap);
+
+        this.mockMvc.perform(patch(this.baseUrl + "/users/2/password").contentType(MediaType.APPLICATION_JSON).content(passwordMapJson).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, ericToken))
+                .andExpect(jsonPath("$.flag").value(true))
+                .andExpect(jsonPath("$.code").value(StatusCode.SUCCESS))
+                .andExpect(jsonPath("$.message").value("Change Password Success"));
+    }
+
+    @Test
+    @DisplayName("Check changeUserPassword with wrong old password (PATCH)")
+    void testChangeUserPasswordWithWrongOldPassword() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/users/login").with(httpBasic("eric", "654321"))); // httpBasic() is from spring-security-test.
+        MvcResult mvcResult = resultActions.andDo(print()).andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        JSONObject json = new JSONObject(contentAsString);
+        String ericToken = "Bearer " + json.getJSONObject("data").getString("token");
+
+        // Given
+        Map<String, String> passwordMap = new HashMap<>();
+        passwordMap.put("oldPassword", "123456"); // Wrong old password.
+        passwordMap.put("newPassword", "Abc12345");
+        passwordMap.put("confirmNewPassword", "Abc12345");
+
+        String passwordMapJson = this.objectMapper.writeValueAsString(passwordMap);
+
+        this.mockMvc.perform(patch(this.baseUrl + "/users/2/password").contentType(MediaType.APPLICATION_JSON).content(passwordMapJson).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, ericToken))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(StatusCode.UNAUTHORIZED))
+                .andExpect(jsonPath("$.message").value("username or password is incorrect."))
+                .andExpect(jsonPath("$.data").value("Old password is incorrect."));
+    }
+
+    @Test
+    @DisplayName("Check changeUserPassword with new password not matching confirm new password (PATCH)")
+    void testChangeUserPasswordWithNewPasswordNotMatchingConfirmNewPassword() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/users/login").with(httpBasic("eric", "654321"))); // httpBasic() is from spring-security-test.
+        MvcResult mvcResult = resultActions.andDo(print()).andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        JSONObject json = new JSONObject(contentAsString);
+        String ericToken = "Bearer " + json.getJSONObject("data").getString("token");
+
+        // Given
+        Map<String, String> passwordMap = new HashMap<>();
+        passwordMap.put("oldPassword", "654321");
+        passwordMap.put("newPassword", "Abc12345");
+        passwordMap.put("confirmNewPassword", "Abc123456");
+
+        String passwordMapJson = this.objectMapper.writeValueAsString(passwordMap);
+
+        this.mockMvc.perform(patch(this.baseUrl + "/users/2/password").contentType(MediaType.APPLICATION_JSON).content(passwordMapJson).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, ericToken))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(StatusCode.INVALID_ARGUMENT))
+                .andExpect(jsonPath("$.message").value("New password and confirm new password do not match."));
+    }
+
+    @Test
+    @DisplayName("Check changeUserPassword with new password not conforming to password policy (PATCH)")
+    void testChangeUserPasswordWithNewPasswordNotConfirmingToPasswordPolicy() throws Exception {
+        ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/users/login").with(httpBasic("eric", "654321"))); // httpBasic() is from spring-security-test.
+        MvcResult mvcResult = resultActions.andDo(print()).andReturn();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        JSONObject json = new JSONObject(contentAsString);
+        String ericToken = "Bearer " + json.getJSONObject("data").getString("token");
+
+        // Given
+        Map<String, String> passwordMap = new HashMap<>();
+        passwordMap.put("oldPassword", "654321");
+        passwordMap.put("newPassword", "short"); // New password is too short.
+        passwordMap.put("confirmNewPassword", "short");
+
+        String passwordMapJson = this.objectMapper.writeValueAsString(passwordMap);
+
+        this.mockMvc.perform(patch(this.baseUrl + "/users/2/password").contentType(MediaType.APPLICATION_JSON).content(passwordMapJson).accept(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION, ericToken))
+                .andExpect(jsonPath("$.flag").value(false))
+                .andExpect(jsonPath("$.code").value(StatusCode.INVALID_ARGUMENT))
+                .andExpect(jsonPath("$.message").value("New password does not conform to password policy."));
     }
 
 }
