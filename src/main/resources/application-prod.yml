@@ -19,6 +19,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none # Turn off the DDL auto generation.
+  data:
+    redis:
+      host: ${redis-host} # secret from Azure Key Vault
+      port: 6380
+      username: ${redis-username} # secret from Azure Key Vault
+      ssl:
+        enabled: true
+      azure:
+        passwordless-enabled: true
 ai:
   openai:
     endpoint: ${AI_OPENAI_ENDPOINT:https://api.openai.com/v1/chat/completions} # environment variable with a default value

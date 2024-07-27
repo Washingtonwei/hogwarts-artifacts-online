@@ -15,7 +15,7 @@
     <description>hogwarts-artifacts-online</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud-azure.version>5.13.0</spring-cloud-azure.version> <!-- Upgrade to 5.13.0 -->
+        <spring-cloud-azure.version>5.14.0</spring-cloud-azure.version>
     </properties>
     <dependencies>
         <dependency>
@@ -101,6 +101,30 @@
         <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-testcontainers</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.redis</groupId>
+            <artifactId>testcontainers-redis</artifactId>
+            <version>2.2.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-data-redis-lettuce</artifactId>
         </dependency>
     </dependencies>
 
