@@ -417,7 +417,7 @@ class HogwartsUserControllerIntegrationTest {
 
     @Test
     @DisplayName("Check changeUserPassword with new password not conforming to password policy (PATCH)")
-    void testChangeUserPasswordWithNewPasswordNotConfirmingToPasswordPolicy() throws Exception {
+    void testChangeUserPasswordWithNewPasswordNotConformingToPasswordPolicy() throws Exception {
         ResultActions resultActions = this.mockMvc.perform(post(this.baseUrl + "/users/login").with(httpBasic("eric", "654321"))); // httpBasic() is from spring-security-test.
         MvcResult mvcResult = resultActions.andDo(print()).andReturn();
         String contentAsString = mvcResult.getResponse().getContentAsString();
