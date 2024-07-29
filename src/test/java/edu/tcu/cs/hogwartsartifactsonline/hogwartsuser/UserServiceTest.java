@@ -353,7 +353,7 @@ class UserServiceTest {
     }
 
     @Test
-    void testChangePasswordNewPasswordDoesNotConfirmToPolicy() {
+    void testChangePasswordNewPasswordDoesNotConformToPolicy() {
         // Given
         HogwartsUser hogwartsUser = new HogwartsUser();
         hogwartsUser.setId(2);

@@ -22,9 +22,9 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // Get the token from the request header
+        // Retrieve the Authorization header from the request
         String authorizationHeader = request.getHeader("Authorization");
-        // If the token is not null, and it starts with "Bearer ", then we need to verify if this token is present in Redis
+        // If the Authorization header is not null, and it starts with "Bearer ", then we need to verify if its token is present in Redis
         // Else this request is just a public request that does not need a token. E.g., login, register, etc.
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -38,5 +38,5 @@ public class JwtInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-    
+
 }
