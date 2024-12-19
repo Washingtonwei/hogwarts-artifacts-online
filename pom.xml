@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.0</version> <!-- Upgrade to 3.2.0 -->
+        <version>3.3.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.tcu.cs</groupId>
@@ -15,7 +15,7 @@
     <description>hogwarts-artifacts-online</description>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud-azure.version>5.14.0</spring-cloud-azure.version>
+        <spring-cloud-azure.version>5.19.0</spring-cloud-azure.version>
     </properties>
     <dependencies>
         <dependency>
@@ -128,7 +128,7 @@
         </dependency>
     </dependencies>
 
-    <!--    The Spring Cloud Azure Bill of Materials (BOM)-->
+    <!-- The Spring Cloud Azure Bill of Materials (BOM) -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -155,7 +155,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <!--                Prevent test cases errors during Maven building in CI-->
+                <!-- Prevent test cases errors during Maven building in CI -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
