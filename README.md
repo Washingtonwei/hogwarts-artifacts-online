@@ -82,7 +82,7 @@ This Spring Boot application uses Redis for caching. You can run a Redis contain
    docker run -d -p 6379:6379 redis
    ```
 
-4**Run the application:**
+4. **Run the application:**
 
 Since *Hogwarts Artifacts Online* is a Spring Boot application built using Maven, you can run it from Maven directly
 using the Spring Boot Maven plugin:
@@ -102,7 +102,8 @@ Or on Windows:
 There is a `Dockerfile` in this project. You can build a container image (if you have a docker daemon):
 
 ```bash
-docker build .
+./mvnw clean package -DskipTests # First, build the JAR file
+docker build . # Second, build the container image
 ```
 
 ## Database Configuration
@@ -200,3 +201,4 @@ Check them out now below to dive deeper into the world of Spring Boot developmen
 55. [Spring Data JPA Specifications](https://youtu.be/AWBSWlM0JmQ)
 56. [Uploading Files to Azure Blob Storage from Spring Boot](https://youtu.be/v_4z8wzel8Y)
 57. [Restricting User Access to Their Own Data](https://youtu.be/j1EvF_iUNMQ)
+58. [Changing Passwords and Revoking JWTs with Redis](https://youtu.be/p2yuefQ6apQ)

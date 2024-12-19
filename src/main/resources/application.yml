@@ -4,6 +4,12 @@ spring:
   web:
     resources:
       add-mappings: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          authorities-claim-name: authorities # The claim name that stores the authorities in the JWT token (the custom claim name that the JwtAuthenticationConverter should inspect).
+          authority-prefix: "" # The prefix that will be added to the authorities in the JWT token. The default one is "SCOPE_". In this project, you need to change it to empty, that is, no prefix!
 api:
   endpoint:
     base-url: /api/v1
