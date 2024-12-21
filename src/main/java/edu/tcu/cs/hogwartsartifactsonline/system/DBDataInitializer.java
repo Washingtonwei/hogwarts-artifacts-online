@@ -66,19 +66,17 @@ public class DBDataInitializer implements CommandLineRunner {
         a6.setImageUrl("https://hogwartsartifactsonline.blob.core.windows.net/artifact-image-container/resurrection-stone.jpg");
 
         Wizard w1 = new Wizard();
-        w1.setId(1);
         w1.setName("Albus Dumbledore");
         w1.addArtifact(a1);
         w1.addArtifact(a3);
+        // Don't manually set the id for the wizard, let the database generate it.
 
         Wizard w2 = new Wizard();
-        w2.setId(2);
         w2.setName("Harry Potter");
         w2.addArtifact(a2);
         w2.addArtifact(a4);
 
         Wizard w3 = new Wizard();
-        w3.setId(3);
         w3.setName("Neville Longbottom");
         w3.addArtifact(a5);
 
@@ -90,21 +88,19 @@ public class DBDataInitializer implements CommandLineRunner {
 
         // Create some users.
         HogwartsUser u1 = new HogwartsUser();
-        u1.setId(1);
         u1.setUsername("john");
         u1.setPassword("123456");
         u1.setEnabled(true);
         u1.setRoles("admin user");
+        // Don't manually set the id for the user, let the database generate it.
 
         HogwartsUser u2 = new HogwartsUser();
-        u2.setId(2);
         u2.setUsername("eric");
         u2.setPassword("654321");
         u2.setEnabled(true);
         u2.setRoles("user");
 
         HogwartsUser u3 = new HogwartsUser();
-        u3.setId(3);
         u3.setUsername("tom");
         u3.setPassword("qwerty");
         u3.setEnabled(false);

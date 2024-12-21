@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ class WizardControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @MockBean
+    @MockitoBean
     WizardService wizardService;
 
     List<Wizard> wizards;
@@ -203,8 +203,8 @@ class WizardControllerTest {
         given(this.wizardService.update(eq(5), Mockito.any(Wizard.class))).willThrow(new ObjectNotFoundException("wizard", 5));
 
         WizardDto wizardDto = new WizardDto(5, // This id does not exist in the database.
-                                            "Updated wizard name",
-                                            0);
+                "Updated wizard name",
+                0);
 
         String json = this.objectMapper.writeValueAsString(wizardDto);
 
