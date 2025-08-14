@@ -101,7 +101,7 @@ public class ArtifactService {
     }
 
     public Page<Artifact> findByCriteria(Map<String, String> searchCriteria, Pageable pageable) {
-        Specification<Artifact> spec = Specification.where(null);
+        Specification<Artifact> spec = Specification.unrestricted(); // Start with an unrestricted specification, matching all objects.
 
         if (StringUtils.hasLength(searchCriteria.get("id"))) {
             spec = spec.and(ArtifactSpecs.hasId(searchCriteria.get("id")));
