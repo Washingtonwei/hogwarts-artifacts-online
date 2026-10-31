@@ -218,8 +218,7 @@ class WizardServiceTest {
         w3.setId(3);
         w3.setName("Neville Longbottom");
 
-        given(this.artifactRepository.findById("1250808601744904192")).willReturn(Optional.of(a));
-        given(this.wizardRepository.findById(3)).willReturn(Optional.of(w3));
+        setupCrudRepositoryFindByIdStubs(a, Optional.of(w3));
 
         // When
         this.wizardService.assignArtifact(3, "1250808601744904192");
@@ -243,8 +242,7 @@ class WizardServiceTest {
         w2.setName("Harry Potter");
         w2.addArtifact(a);
 
-        given(this.artifactRepository.findById("1250808601744904192")).willReturn(Optional.of(a));
-        given(this.wizardRepository.findById(3)).willReturn(Optional.empty());
+        setupCrudRepositoryFindByIdStubs(a, Optional.empty());
 
         // When
         Throwable thrown = assertThrows(ObjectNotFoundException.class, () -> {
@@ -274,4 +272,8 @@ class WizardServiceTest {
                 .hasMessage("Could not find artifact with Id 1250808601744904192 :(");
     }
 
+    private void setupCrudRepositoryFindByIdStubs(Artifact a, Optional<Wizard> findByIdReturnValue) {
+        given(this.artifactRepository.findById("1250808601744904192")).willReturn(Optional.of(a));
+        given(this.wizardRepository.findById(3)).willReturn(findByIdReturnValue);
+    }
 }
